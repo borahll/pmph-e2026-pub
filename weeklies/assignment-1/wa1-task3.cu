@@ -29,15 +29,14 @@ __global__ void vectorAddKernel(float *A, float *B, float *C, unsigned int N) {
 
 // Returns elapsed time in microseconds
 double elapsedTime(struct timeval start, struct timeval end) {
-    return (end.tv_sec - start.tv_sec) * 1000000.0
-         + (end.tv_usec - start.tv_usec);
+    return (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
 }
 
 
 int main(int argc, char **argv) {
 
     if (argc != 2) {
-        printf("Usage: %s <vector length>\n", argv[0]);
+        printf("Incorrect usage\n", argv[0]);
         exit(1);
     }
 
@@ -51,7 +50,7 @@ int main(int argc, char **argv) {
 
     cudaSetDevice(0);
 
-    size_t mem_size = N * sizeof(float);
+    long double mem_size = N * sizeof(float);
 
 
     // Allocate host memory
@@ -85,11 +84,11 @@ int main(int argc, char **argv) {
     float *d_B;
     float *d_C;
 
-    cudaMalloc((void **) &d_A, mem_size);
-    cudaMalloc((void **) &d_B, mem_size);
-    cudaMalloc((void **) &d_C, mem_size);
+    cudaMalloc(&d_A, mem_size);
+    cudaMalloc(&d_B, mem_size);
+    cudaMalloc(&d_C, mem_size);
 
-    // Copy inputs to GPU
+    // Cpy to GPU
     cudaMemcpy(d_A, h_A, mem_size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_B, h_B, mem_size, cudaMemcpyHostToDevice);
 

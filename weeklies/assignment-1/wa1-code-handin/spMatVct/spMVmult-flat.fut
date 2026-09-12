@@ -7,6 +7,13 @@
 --   [2.0f32, 1.0f32, 0.0f32, 3.0f32]
 -- }
 -- output { [3.0f32, 0.0f32, -4.0f32, 6.0f32, 9.0f32] }
+-- compiled input {
+--   [0i64, 2i64, 1i64, 0i64, 1i64, 2i64]
+--   [2f32, 3f32, 4f32, 5f32, 6f32, 7f32]
+--   [2i64, 1i64, 3i64]
+--   [10f32, 20f32, 30f32]
+-- }
+-- output { [110f32, 80f32, 380f32] }
 
 ------------------------
 --- Sgm Scan Helpers ---
@@ -107,9 +114,13 @@ let spMatVctMult [num_elms][vct_len][num_rows]
                    : [num_rows]f32 =
 
   let shp_sc = scan (+) 0 mat_shp
-  -- TODO: fill in your implementation here.
-  --       for now, the function simply returns zeroes.
-   in replicate num_rows 0.0f32
+  let starts_at = map2 (-) shp_sc mat_shp
+  let flags = scatter (replicate num_elms false)
+                      starts_at
+                      (replicate num_rows true)
+  let products = map (\(column, value) -> value * vct[column]) mat_val
+  let sum = sgmSumF32 flags products
+  in map (\row_end -> sum[row_end - 1]) shp_sc
 
 -- One may run with for example:
 -- $ futhark dataset --i64-bounds=0:9999 -g [1000000]i64 --f32-bounds=-7.0:7.0 -g [1000000]f32 --i64-bounds=100:100 -g [10000]i64 --f32-bounds=-10.0:10.0 -g [10000]f32 | ./spMVmult-seq -t /dev/stderr -n
