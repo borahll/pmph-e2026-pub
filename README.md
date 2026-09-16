@@ -103,7 +103,7 @@ It is not for granted that you are able to solve them without attending the (lec
 | 14/09 | 15:00-17:00 | Lab: [GPU hardware: three important design choices.](slides/Lab-GPU-HWD.pdf) | helping with weeklies |
 | 16/09 | 10:00-12:00 | [Dependency Analysis of Imperative Loops](slides/L5-LoopParI.pdf) | Chapter 5 of lecture Notes |
 | 16/09 | 13:00-15:00 |  | helping with the first two weekly assignments.
-| 16/09 |  | No new weekly assignment this week; the third will be published next week | |
+| 16/09 | Discussing SpMV multiplication, i.e., the relation between tasks 5 and 4 in Weeklies 2 and 1 | No new weekly assignment this week; the third will be published next week | |
 | 21/09 | 13:00-15:00 | [Demonstrating Simple Techniques for Optimizing Locality](slides/L6-locality.pdf) | Chapter 5 and 6 of Lecture Notes |
 | 21/09 | 15:00-17:00 | [**Assignment 3+4 handout**](weeklies/assignment-3-4/) | helping with the weekly assignments. |
 | 23/09 | 10:00-12:00 | [Optimizing Locality Continuation](slides/L6-locality.pdf); [Optimizing Locality same idea in other words: Nearest Neighbor, and again Matrix Multiplication and Transposition](slides/L5-LoopParI.pdf) | Chapters 5 and 6 of lecture Notes |
